@@ -8,7 +8,7 @@ void lcs(const vector<int>& seq1, const vector<int>& seq2) {
 	vector<vector<int>> lcsm(n + 1, vector<int>(m + 1,0));
 	for (int i = 1; i <= n; i++) {
 		for (int j = 1; j <= m; j++) {
-			if (seq1[i]==seq2[j]) {
+			if (seq1[i-1]==seq2[j-1]) {
 				lcsm[i][j] = 1 + lcsm[i - 1][j - 1];
 			}
 			else {
@@ -23,9 +23,9 @@ void printLcs(const vector<int>& seq1, const vector<int>& seq2, const vector<vec
 	if (!i || !j) {
 		return;
 	}
-	if (seq1[i]==seq2[j]) {
+	if (seq1[i-1]==seq2[j-1]) {
 		printLcs(seq1, seq2, dp, i-1, j-1);
-		cout << seq1[i] << " ";
+		cout << seq1[i-1] << " ";
 	}
 	else {
 		if (dp[i-1][j]>dp[i][j-1]) {
